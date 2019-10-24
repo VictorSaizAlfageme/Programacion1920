@@ -1,0 +1,57 @@
+
+  if (aleatorio.charAt(q)==num.charAt(q))
+            JOptionPane.showMessageDialog(null, "Muerto"); 
+        else
+            if (aleatorio.charAt(q)==num.charAt(w))
+                JOptionPane.showMessageDialog(null, "Herido");
+            else
+                if (aleatorio.charAt(q)==num.charAt(e))
+                    JOptionPane.showMessageDialog(null, "Herido");
+                else
+                    JOptionPane.showMessageDialog(null, "El primer valor del numero aleatorio no coincide con ningun valor del numero que has escrito"); 
+        
+        if (aleatorio.charAt(w)==num.charAt(q))
+            JOptionPane.showMessageDialog(null, "Herido"); 
+        else
+            if (aleatorio.charAt(w)==num.charAt(w))
+            JOptionPane.showMessageDialog(null, "Muerto");
+            else
+                if (aleatorio.charAt(w)==num.charAt(e))
+                JOptionPane.showMessageDialog(null, "Herido");
+                else
+                    JOptionPane.showMessageDialog(null, "El segundo valor del numero aleatorio no coincide con ningun valor del numero que has escrito"); 
+        
+        if (aleatorio.charAt(e)==num.charAt(q))
+            JOptionPane.showMessageDialog(null, "Herido"); 
+        else
+            if (aleatorio.charAt(e)==num.charAt(w))
+            JOptionPane.showMessageDialog(null, "Herido");
+            else
+                if (aleatorio.charAt(e)==num.charAt(e))
+                JOptionPane.showMessageDialog(null, "Muerto");
+                else
+                    JOptionPane.showMessageDialog(null, "El tercer valor del numero aleatorio no coincide con ningun valor del numero que has escrito"); 
+        
+
+if (muertos==2)
+                JOptionPane.showMessageDialog(null, "Hay 2 muertos");
+            else
+                if (muertos==1)
+                    JOptionPane.showMessageDialog(null, "Hay un muerto");
+                else
+                    if (muertos==0)
+                        JOptionPane.showMessageDialog(null, "No hay muertos");
+
+            
+            if (heridos==3)
+                JOptionPane.showMessageDialog(null, "Hay 2 muertos");
+            else
+                if (muertos==2)
+                    JOptionPane.showMessageDialog(null, "Hay un muerto");
+                else
+                    if (muertos==1)
+                        JOptionPane.showMessageDialog(null, "Hay 1 muerto");
+            if (muertos==0)
+                        JOptionPane.showMessageDialog(null, "No hay muertos");
+                
+        }
