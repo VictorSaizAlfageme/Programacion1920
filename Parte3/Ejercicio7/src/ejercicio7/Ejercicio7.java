@@ -37,9 +37,9 @@ public class Ejercicio7 {
          {
              if (fecha1.getDayOfWeek()==DayOfWeek.SUNDAY)
                  contador++;
-                 fecha1 = fecha1.plusDays(1);
+                fecha1 = fecha1.plusDays(1);
          }while(fecha1.isBefore(fecha2));
-         JOptionPane.showMessageDialog(null, "Hay " + contador + " domingos");
+         JOptionPane.showMessageDialog(null, contador);
          
            
         }catch (Exception e){
