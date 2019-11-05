@@ -31,10 +31,7 @@ public class Ejercicio2 {
     }
         for(int x=0; x < size; x++){
         JOptionPane.showMessageDialog(null, array[x]);
-        }
-        
-        for(int x=0; x < size; x++){
-             suma = suma + array[x];
+        suma = suma + array[x];
         }
         
         JOptionPane.showMessageDialog(null, suma);
