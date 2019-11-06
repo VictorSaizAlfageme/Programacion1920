@@ -20,13 +20,11 @@ public class Ejercicio4 {
     public static void main(String[] args) {
         // TODO code application logic here
         String pregunta="";
-        
-       
-        
+         boolean correcto=false;   
         
        
         do{
-          
+           int contar=0;
         try
         {
         String meses = JOptionPane.showInputDialog("Introduce un mes en letra");
@@ -48,16 +46,23 @@ public class Ejercicio4 {
          mes[10] = "noviembre";
          mes[11] = "diciembre";
         
-        
-         for (String i : mes)
-        
-         if(meses.equalsIgnoreCase(i)){
+       
+         for (int i = 0; i < mes.length; i++)
+         {
+          
+          if (meses.equalsIgnoreCase(mes[i])){
              JOptionPane.showMessageDialog(null, "Lo has escrito correctamente");
+            correcto= true;
+            contar = contar + 1;
+             }
          }
-         else 
-            throw new incorrecto();
          
-      
+         if(contar==0){
+             JOptionPane.showMessageDialog(null, "Te has equivocado");
+             correcto= true;
+             }
+         
+         
       
          
         pregunta = JOptionPane.showInputDialog("¿Deseas continuar?");
@@ -65,10 +70,7 @@ public class Ejercicio4 {
         }catch (error e){
         JOptionPane.showMessageDialog(null, "Error, inserte otro número");
         }
-        catch (incorrecto e){
-        JOptionPane.showMessageDialog(null, "Te has equivocado");
-       
-        }
+         
         catch (Exception e){
             JOptionPane.showMessageDialog(null, "ERROR" + e.getClass());
         }
