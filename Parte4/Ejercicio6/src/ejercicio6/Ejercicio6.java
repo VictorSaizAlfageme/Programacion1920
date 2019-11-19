@@ -24,12 +24,12 @@ public class Ejercicio6 {
         String textoString = texto.toUpperCase();
         char[] letras = new char[26];
             for(int x=0; x < letras.length; x++){
-            letras[x]= (char) ('a' + x );
+            letras[x]= (char) ('A' + x );
             } 
             
-            for (int contar=0; contar<texto.length();contar++) { 
+            for (int contar=0; contar<textoString.length();contar++) { 
                 for(int valor=0; valor<26; valor++){
-            if (texto.charAt(contar)==letras[valor])
+            if (textoString.charAt(contar)==letras[valor])
                 contador++;
                 }
             }

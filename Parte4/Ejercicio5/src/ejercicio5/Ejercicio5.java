@@ -31,7 +31,7 @@ public class Ejercicio5 {
         if (day.isEmpty())
             throw new error();
         int dia = Integer.parseInt(day);
-        if (dia<=0 || dia>=31)
+        if (dia<=0 || dia>31)
             throw new dia();
        
         String month = JOptionPane.showInputDialog("Introduce un mes en formato número");
