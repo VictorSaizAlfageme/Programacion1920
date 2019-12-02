@@ -88,6 +88,8 @@ public class EJERCICIO11 {
     
      public static void pedirgolosina(){
          
+         try {
+         
         String producto = JOptionPane.showInputDialog("¿Que producto quieres?");
         
         if (producto.length()!=2){
@@ -108,6 +110,9 @@ public class EJERCICIO11 {
            ventas[fila][columna] += 1;
        }
         }
+         }catch (java.lang.ArrayIndexOutOfBoundsException e) {
+             JOptionPane.showMessageDialog(null, "no existe");
+         }
      }
      
     public static void mostrargolosina(){
