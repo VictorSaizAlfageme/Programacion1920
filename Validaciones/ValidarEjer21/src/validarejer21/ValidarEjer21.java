@@ -46,7 +46,7 @@ public class ValidarEjer21 {
               
         
         do {
-        String codigo = JOptionPane.showInputDialog(null, "Escribe el codigo de alumno");
+        String codigo = JOptionPane.showInputDialog(null, "Escribe el codigo de alumno(5 numeros)");
         Pattern pat = Pattern.compile("^[0-9]{5}$");
         Matcher mat = pat.matcher(codigo);
         if (mat.matches ()) {
@@ -61,7 +61,7 @@ public class ValidarEjer21 {
         
         do {
         String nombre = JOptionPane.showInputDialog(null, "Escribe el nombre de alumno(Nombre Ape1 Ape2)");
-        Pattern pat = Pattern.compile("^[A-Z][a-z]+[ ][A-Z][a-z]+[ ][A-Z][a-z]+$");
+        Pattern pat = Pattern.compile("^[A-Z\\sa-z]+[ ][A-Z\\sa-z]+[ ][A-Z\\sa-z]+$");
         Matcher mat = pat.matcher(nombre);
         if (mat.matches ()) {
             JOptionPane.showMessageDialog(null, "Añadido correctamente");
@@ -73,8 +73,9 @@ public class ValidarEjer21 {
         }while(nombrecorrecto == false);
         
         do {
-        String domicilio = JOptionPane.showInputDialog(null, "Escribe la dirección del alumno(Calle - portal - piso)");
-        Pattern pat = Pattern.compile("^[A-Z][a-z]+[ ][0-9]+[ ][0-9A-Z]+$");
+        String domicilio = JOptionPane.showInputDialog(null, "Escribe la dirección del alumno(Calle portal piso)"
+                + "\n Ejemplo (Francia 7 3D) ");
+        Pattern pat = Pattern.compile("^[A-Z\\sa-z]+[ ][0-9]+[ ][0-9A-Z]+$");
         Matcher mat = pat.matcher(domicilio);
         if (mat.matches ()) {
             JOptionPane.showMessageDialog(null, "Añadido correctamente");
@@ -99,7 +100,7 @@ public class ValidarEjer21 {
         }while(telefonocorrecto == false);
         
          do {
-        String edad = JOptionPane.showInputDialog(null, "Escribe el telefono de alumno(2 cifras)");
+        String edad = JOptionPane.showInputDialog(null, "Escribe la edad de alumno(2 cifras)");
         Pattern pat = Pattern.compile("^[0-9]{2}$");
         Matcher mat = pat.matcher(edad);
         if (mat.matches ()) {
@@ -113,7 +114,7 @@ public class ValidarEjer21 {
         }while(edadcorrecto == false);
          
         do {
-        String sexo = JOptionPane.showInputDialog(null, "Escribe el telefono de alumno(H, M u O)");
+        String sexo = JOptionPane.showInputDialog(null, "Escribe el sexo de alumno(H, M u O)");
         Pattern pat = Pattern.compile("^[HMO]$");
         Matcher mat = pat.matcher(sexo);
         if (mat.matches ()) {
@@ -126,17 +127,19 @@ public class ValidarEjer21 {
         }while(sexocorrecto == false);
         
         do {
-        String fecha = JOptionPane.showInputDialog(null, "Escribe el telefono de alumno(dd/MM/YYYY)");
-        Pattern pat = Pattern.compile("^((0[0-9])|([1-2][0-9])|(3[0-1]))/((0[0-9])|(1[0-2]))/((1[0-9]{3})|(20[0-1][0-9])|(2020))$");
+        String fecha = JOptionPane.showInputDialog(null, "Escribe el la fecha de nacimiento del alumno(dd/MM/YYYY)");
+        Pattern pat = Pattern.compile("^((0[0-9]|[1-2][0-9]|3[0-1])/(0[13578]|1[02])/[1-2][0-9]{3})|"
+        + "((0[0-9]|[1-2][0-9]|30)/(0[1469]|11)/[1-2][0-9]{3})|((0[0-9]|[1-2][0-8]|19)/02/[1-2][0-9]{3})$");
         Matcher mat = pat.matcher(fecha);
         if (mat.matches ()) {
             JOptionPane.showMessageDialog(null, "Añadido correctamente");
             fechacorrecto = true;
             alumno.setFecha(fecha);
             } else {
-                JOptionPane.showMessageDialog(null, "No es correcto, vuelve a insetar la edad del alumno");
+                JOptionPane.showMessageDialog(null, "No es correcto, vuelve a insetar la fecha de nacimiento del alumno");
                    }
         }while(fechacorrecto == false);
+        
          
         
            do {
@@ -154,7 +157,7 @@ public class ValidarEjer21 {
            
         
            do {
-        String correo = JOptionPane.showInputDialog(null, "Escribe el correo de alumno(que contenga un @ikasle.egibide.org)");
+        String correo = JOptionPane.showInputDialog(null, "Escribe el correo de EGIBIDE del alumno(que contenga un @ikasle.egibide.org)");
         Pattern pat = Pattern.compile("^[A-Za-z0-9._]+@ikasle.egibide.org");
         Matcher mat = pat.matcher(correo);
         if (mat.matches ()) {
@@ -167,8 +170,8 @@ public class ValidarEjer21 {
         }while(correocorrecto == false);
            
         do {
-        String web = JOptionPane.showInputDialog(null, "Escribe la pagina web de alumno(empieza por www.)");
-        Pattern pat = Pattern.compile("^www.");
+        String web = JOptionPane.showInputDialog(null, "Escribe la pagina web de alumno(empieza por www. y termina por .algo)");
+        Pattern pat = Pattern.compile("^www.[A-Za-z0-9]+.[A-Za-z0-9]{2,4}");
         Matcher mat = pat.matcher(web);
         if (mat.matches ()) {
             JOptionPane.showMessageDialog(null, "Añadido correctamente");
@@ -186,7 +189,7 @@ public class ValidarEjer21 {
 "- El tercer digito representa el curso (En la ESO hay cuatro, en el resto de los niveles dos).\n" +
 "- Letra que identifica el ciclo o el curso.\n" +
 "- Letra que indica el modelo (A, B o D).)");
-        Pattern pat = Pattern.compile("^(1[234][12][A-Z][ABD])|(11[1234][A-Z][ABD])$");
+        Pattern pat = Pattern.compile("^(1[234][12][A-Z][ABD])|(11[1234][A-L][ABD])$");
         Matcher mat = pat.matcher(curso);
         if (mat.matches ()) {
             JOptionPane.showMessageDialog(null, "Añadido correctamente");
@@ -199,7 +202,7 @@ public class ValidarEjer21 {
         
         
         do {
-        String estado = JOptionPane.showInputDialog(null, "Escribe la pagina web de alumno(casado o soltero)");
+        String estado = JOptionPane.showInputDialog(null, "Escribe el estado civil del alumno(casado o soltero)");
         Pattern pat = Pattern.compile("^(casado)|(soltero)$");
         Matcher mat = pat.matcher(estado);
         if (mat.matches ()) {
@@ -215,7 +218,7 @@ public class ValidarEjer21 {
         
         alumnos.add(alumno);   
         
-        }while(pregunta.equals(""));
+        }while(pregunta.equals("si"));
         
         
         String buscaralumno = JOptionPane.showInputDialog(null, "Escribe el codigo del alumno del que quieras mostrar los datos)");
@@ -223,21 +226,13 @@ public class ValidarEjer21 {
         for(Alumno alumno : alumnos){
             String codigobuscar = alumno.getCodigo();
             
-            if(codigobuscar == buscaralumno){
-                JOptionPane.showMessageDialog(null, alumnos.get(Integer.parseInt(codigobuscar)).toString() );
+            if(codigobuscar.equals(buscaralumno)){
+                JOptionPane.showMessageDialog(null, alumno.toString() );
             }
          
         }
-                
-            
-        }
-       
-            
            
-           
-         
     }
-    
-    
+   
     
 }

@@ -138,11 +138,22 @@ public class Alumno {
         this.estado = estado;
     }
 
-    @Override
+    @Override 
     public String toString() {
-        return "Alumno{" + "codigo=" + codigo + ", nombre=" + nombre + ", domicilio=" + domicilio + ", telefono=" + telefono + ", edad=" + edad + ", sexo=" + sexo + ", fecha=" + fecha + ", correopersonal=" + correopersonal + ", correo=" + correo + ", web=" + web + ", curso=" + curso + ", estado=" + estado + '}';
+        return "DATOS DEL ALUMNO"
+                + "\n CODIGO ---> " + codigo 
+                + "\n NOMBRE ---> " + nombre 
+                + "\n DOMICILIO---> " + domicilio 
+                + "\n TELEFONO ---> " + telefono 
+                + "\n EDAD ---> " + edad 
+                + "\n SEXO ---> " + sexo 
+                + "\n FECHA---> " + fecha 
+                + "\n CORREEO PERSONAL ---> " + correopersonal 
+                + "\n CORREO EGIBIDE ---> " + correo 
+                + "\n PAGINA WEB ---> " + web
+                + "\n CURSO ---> " + curso
+                + "\n ESTADO CIVIL ---> " + estado;
     }
-   
     
     
     

@@ -5,6 +5,10 @@
  */
 package pruebas;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -21,23 +25,41 @@ public class Pruebas {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        boolean cursocorrecto = false;
-          do {
-        String curso = JOptionPane.showInputDialog(null, "Escribe el curso del alumno"
-                + "\n(El primer digito representa el centro (1 - Arriaga).\n" +
-"- El segundo digito representa el nivel (1- ESO 2-Bachiller 3-CFGM 4-CFGS).\n" +
-"- El tercer digito representa el curso (En la ESO hay cuatro, en el resto de los niveles dos).\n" +
-"- Letra que identifica el ciclo o el curso.\n" +
-"- Letra que indica el modelo (A, B o D).)");
-        Pattern pat = Pattern.compile("^(1[234][12][A-Z][ABD])|(11[1234][A-Z][ABD])$");
-        Matcher mat = pat.matcher(curso);
+        boolean fechacorrecto = false;
+        do {
+            try{
+               
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaString = JOptionPane.showInputDialog("Teclea una fecha dd/MM/yyyy");
+        LocalDate fechaUno = LocalDate.parse(fechaString, formatter);
+        
+            
+            }catch(DateTimeParseException e){
+                 JOptionPane.showMessageDialog(null, "La fecha introducida no tiene el formato que debe de tener");
+               
+            
+            }catch(Exception e){
+                 JOptionPane.showMessageDialog(null, e.getClass());
+               
+            }
+        
+        
+        }while(fechacorrecto == false);
+        JOptionPane.showMessageDialog(null, "Añadido correctamente");
+        alumno.setFecha(fechaUno);
+}
+}
+
+do {
+        String fecha = JOptionPane.showInputDialog(null, "Escribe el la fecha de nacimiento del alumno(dd/MM/YYYY)");
+        Pattern pat = Pattern.compile("^((0[0-9]|[1-2][0-9]|3[0-1])/(0[13578]|1[02])/[1-2][0-9]{3})|"
+        + "((0[0-9]|[1-2][0-9]|30)/(0[1469]|11)/[1-2][0-9]{3})|((0[0-9]|[1-2][0-8]|19)/02/[1-2][0-9]{3})$");
+        Matcher mat = pat.matcher(fecha);
         if (mat.matches ()) {
             JOptionPane.showMessageDialog(null, "Añadido correctamente");
-            cursocorrecto = true;
+            fechacorrecto = true;
+            alumno.setFecha(fecha);
             } else {
-                JOptionPane.showMessageDialog(null, "No es correcto, vuelve a insetar el curso web del alumno");
+                JOptionPane.showMessageDialog(null, "No es correcto, vuelve a insetar la fecha de nacimiento del alumno");
                    }
-        }while(cursocorrecto == false);
-    }
-    
-}
+        }while(fechacorrecto == false);
