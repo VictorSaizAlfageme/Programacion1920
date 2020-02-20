@@ -145,7 +145,6 @@ public class VentanaVenta extends javax.swing.JFrame {
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
         Main.venderProducto(tfProducto.getText(), Integer.parseInt(tfUnidades.getText()));
-        JOptionPane.showMessageDialog(rootPane, "Producto vendido satisfactoriamente!");
         limpiarCampos();
         Main.mostrarPrincipal();
     }//GEN-LAST:event_bAceptarActionPerformed

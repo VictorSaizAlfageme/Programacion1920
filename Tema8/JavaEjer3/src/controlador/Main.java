@@ -6,6 +6,7 @@
 package controlador;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Producto;
 import vista.*;
 
@@ -91,10 +92,19 @@ public class Main {
         return null;
     }
     
-    public static void venderProducto(String producto, int unidades) {
+    public static void venderProducto(String producto, int tfUnidades) {
         for(Producto p: listaProductos) {
-            if(p.getNombre().equalsIgnoreCase(producto)) {
-                p.setNumUnidades(Integer.toString(Integer.parseInt(p.getNumUnidades()) - unidades));
+            int UnidadesTotales = Integer.parseInt(p.getNumUnidades());
+            int UnidadesRestantes = tfUnidades;
+            if(p.getNombre().equalsIgnoreCase(producto)){
+                if(UnidadesRestantes < UnidadesTotales){
+                    UnidadesTotales = UnidadesTotales - tfUnidades;
+                    p.setNumUnidades(Integer.toString(UnidadesTotales));
+                    JOptionPane.showMessageDialog(null, "Producto vendido satisfactoriamente");
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "No quedan tantas unidades");
+                }
             }
         }
     }
