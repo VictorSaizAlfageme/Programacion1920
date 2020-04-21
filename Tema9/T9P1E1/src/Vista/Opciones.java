@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import t9p1e1.T9P1E1;
 
@@ -150,7 +152,7 @@ public class Opciones extends javax.swing.JFrame {
                      T9P1E1.mostrarDatosPersonas();
                 break;
                 case "3" :
-                    T9P1E1.mostrarPersonas();
+                    T9P1E1.mostrarPersonas(nombre);
                 break;
                 case "4" :
                     T9P1E1.finalizar();  
@@ -162,6 +164,8 @@ public class Opciones extends javax.swing.JFrame {
             }
         }catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "Escribe un valor del 1 al 4");
+        } catch (Exception ex) {
+            Logger.getLogger(Opciones.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tfOpcionFocusLost
 

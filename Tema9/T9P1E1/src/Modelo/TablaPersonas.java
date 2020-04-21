@@ -31,33 +31,42 @@ public class TablaPersonas {
             throw new Exception("El número de filas actualizadas no es uno");
     }
      
-    public ArrayList<Persona>  seleccionarTodo() throws Exception
-    {
-        ArrayList<Persona> lista = new ArrayList();
-       
-        // Con Statement también se puede porque no hay parametros.
-        
-        String plantilla = "SELECT * from personas;";
+    public String ConsultarDatos(String nombre) throws Exception {
+        String plantilla = "SELECT * FROM PERSONAS WHERE UPPER(NOMBRE)=?;";
         PreparedStatement ps = bd.prepareStatement(plantilla);
-       
-// executeQuery NO update
-      ResultSet resultado = ps.executeQuery();
-      // resultado es un conjunto de filas y columnas
-      // .next nos mueve a la siguiente fila y devuelve true. Si estoy ya en la última fila devuelve false.
-       while(resultado.next())
-       {
-                // Crear objeto
-                Persona p = new Persona();
-                // resultado.get para coger el contenido de la columna dni que es un string
-                p.setNombre(resultado.getString("nombre"));
-                p.setEdad(resultado.getString("edad"));
-                p.setProfesion(resultado.getString("profesion"));
-                p.setTelefono(resultado.getString("telefono"));
-                
-                lista.add(p);
-       }
-       return lista;
+        nombre = nombre.toUpperCase();
+        ps.setString(1, nombre);
+        
+        ResultSet consulta = ps.executeQuery();
+        
+        if(consulta.next()){
+            String resultado = consulta.getString("nombre")+" , "+
+                    consulta.getString("edad")+" , "+consulta.getString("profesion")+
+                    " , "+consulta.getString("telefono");
+            return resultado;
+        }
+        else{
+            return "No se ha encontrado a nadie con este nombre";
+        }
     }
+    
+    public ArrayList<Persona> VerDatos(int size, String nombre, String edad, String profesion, String telefono) throws Exception{
+        ArrayList<Persona> personas = new ArrayList();
+        String plantilla = "SELECT * FROM PERSONAS ORDER BY NOMBRE;";
+        PreparedStatement ps = bd.prepareStatement(plantilla);
+        ResultSet consulta = ps.executeQuery();
+        while(consulta.next()){
+            Persona p = new Persona();
+            p.setNombre(consulta.getString("nombre"));
+            p.setEdad(consulta.getString("edad"));
+            p.setProfesion(consulta.getString("profesion"));
+            p.setTelefono(consulta.getString("telefono"));
+            personas.add(p);
+        }
+        return personas;
+    }
+
+   
     
     
 }

@@ -24,6 +24,10 @@ public class T9P1E1 {
     private static Opciones vm;
     private static Registrarse vreg;
     
+    
+    static ArrayList<Persona> listapersonas = new ArrayList();
+    static Persona per = new Persona();
+    
     private static Persona p;
 
     /**
@@ -63,26 +67,26 @@ public class T9P1E1 {
                 p = new Persona(Nombre,Edad,Profesion,Telefono);
                 tp.insertar(p);
     }
-    
          
-     public static void mostrarDatosPersonas(JComboBox cb) throws Exception
-    {
-        String nombre = JOptionPane.showInputDialog(null, "Escribe el Nombre de la persona");
-        ArrayList<Persona> lista = tp.seleccionarTodo();
-        for(int x = 0; x < lista.size(); x++)
-            cb.addItem(lista.get(x).getNombre());
-            cb.addItem(lista.get(x).getEdad());
-            cb.addItem(lista.get(x).getProfesion());
-            cb.addItem(lista.get(x).getTelefono());
-    }
-     
-     
-    public static void mostrarPersonas() {
-        int x;
-
-        JOptionPane.showInputDialog(null, "");
-        
-    }
+     public static String mostrarPersonas() throws Exception{
+       tp = new TablaPersonas(bd.getCon());
+       String resultado = tp.ConsultarDatos(nombre);
+       return resultado;
+   } 
+   
+   public static void mostrarDatosPersonas() throws Exception{
+       tp = new TablaPersonas(bd.getCon());
+       listapersonas = tp.VerDatos();
+       vreg = new Registrarse();
+       per = listapersonas.get(0);
+       tp.VerDatos(listapersonas.size(),per.getNombre(),per.getEdad(),per.getProfesion(),per.getTelefono());
+       vreg.setVisible(true);
+   }
+   
+   public static void DatosDeLaLista(int posi){
+       per = listapersonas.get(posi);
+       tp.VerDatos(listapersonas.size(),per.getNombre(),per.getEdad(),per.getProfesion(),per.getTelefono());
+   }
     
     
     public static void finalizar() {
