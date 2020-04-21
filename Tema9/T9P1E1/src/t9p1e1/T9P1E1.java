@@ -45,8 +45,7 @@ public class T9P1E1 {
             bd.desconectar();
             System.out.println(e.getMessage());
         }
-         
-                
+              
        
      }
      
@@ -65,13 +64,16 @@ public class T9P1E1 {
                 tp.insertar(p);
     }
     
-    
-    public static void mostrarDatosPersonas() {
+         
+     public static void mostrarDatosPersonas(JComboBox cb) throws Exception
+    {
         String nombre = JOptionPane.showInputDialog(null, "Escribe el Nombre de la persona");
-        vm.setVisible(false);
-        vreg.setVisible(true);
-        Registrarse.mostrardatos(nombre, p.getEdad(), p .getNombre(), p.getProfesion(), p.getTelefono());
-        
+        ArrayList<Persona> lista = tp.seleccionarTodo();
+        for(int x = 0; x < lista.size(); x++)
+            cb.addItem(lista.get(x).getNombre());
+            cb.addItem(lista.get(x).getEdad());
+            cb.addItem(lista.get(x).getProfesion());
+            cb.addItem(lista.get(x).getTelefono());
     }
      
      
