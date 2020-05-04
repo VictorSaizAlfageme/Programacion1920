@@ -4,10 +4,6 @@ import t9p1e2.Controlador;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    public VentanaPrincipal() {
-        this.setExtendedState(this.MAXIMIZED_BOTH);
-        initComponents();
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -15,6 +11,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jToolBar1 = new javax.swing.JToolBar();
         bAlta = new javax.swing.JButton();
+        bEditar = new javax.swing.JButton();
+        bBorrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,6 +42,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(bAlta);
+
+        bEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/lapiz.jpg"))); // NOI18N
+        bEditar.setToolTipText("Alta de un acontecimeinto");
+        bEditar.setFocusable(false);
+        bEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(bEditar);
+
+        bBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/basura.png"))); // NOI18N
+        bBorrar.setToolTipText("Alta de un acontecimeinto");
+        bBorrar.setFocusable(false);
+        bBorrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bBorrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBorrarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(bBorrar);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Empresa");
@@ -102,12 +124,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mAltaActionPerformed
 
     private void bAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAltaActionPerformed
-             mAlta.doClick();
+    
     }//GEN-LAST:event_bAltaActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
      
     }//GEN-LAST:event_formWindowOpened
+
+    private void bEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarActionPerformed
+        // TODO add your handling code here:
+        Controlador.mostrarModificar();
+    }//GEN-LAST:event_bEditarActionPerformed
+
+    private void bBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBorrarActionPerformed
+        // TODO add your handling code here:
+        Controlador.ventanaEliminar();
+    }//GEN-LAST:event_bBorrarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -143,6 +175,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAlta;
+    private javax.swing.JButton bBorrar;
+    private javax.swing.JButton bEditar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

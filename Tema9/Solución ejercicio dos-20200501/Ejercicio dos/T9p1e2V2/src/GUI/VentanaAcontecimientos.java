@@ -233,7 +233,7 @@ private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         }
         catch(NombreNoValido e)
         {
-            javax.swing.JOptionPane.showMessageDialog(this,"El nombre del evento no es válido. \n Tiene que empezar con una letra y tener una longitud minima de 3");
+            javax.swing.JOptionPane.showMessageDialog(this,"El nombre no es válido.");
             tfNombre.requestFocus();
             return false;
         }
@@ -245,34 +245,34 @@ private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         }
         catch(FechaNoValida e)
         {
-            javax.swing.JOptionPane.showMessageDialog(this,"La fecha tecleada no es válida");
+            javax.swing.JOptionPane.showMessageDialog(this,"La fecha no es válida");
             tfFecha.requestFocus();
             return false;
         }
         catch(HorasNoValidas e)
         {
-            javax.swing.JOptionPane.showMessageDialog(this,"Las horas indicadas no son lógicas");
+            javax.swing.JOptionPane.showMessageDialog(this,"La horas no es valida");
             tfHoraInicio.requestFocus();
             return false;
         }
         catch(NumberFormatException e)
         {
-            javax.swing.JOptionPane.showMessageDialog(this,"El aforo indicado no es válido");
+            javax.swing.JOptionPane.showMessageDialog(this,"El aforo no es válido");
             tfAforo.requestFocus();
             return false;
         }
         catch(Exception e)
         {
-            javax.swing.JOptionPane.showMessageDialog(this,"Problemas validando los datos de entrada " + e.getClass());
+            javax.swing.JOptionPane.showMessageDialog(this,e.getClass());
             return false;
         }
     }
     
     private void validarNombre()throws Exception{
         if (tfNombre.getText().isEmpty())
-            throw new CampoVacio("El nombre del acontecimiento es un dato obligatorio");
+            throw new CampoVacio("El campo esta vacio");
         // Considero que debe tener un mínimo de 3 caracteres
-        if (tfNombre.getText().length()< 3)
+        if (tfNombre.getText().length()< 10)
             throw new NombreNoValido();
         // También se puede controlar que no exceda del tamaño indicado en la base de datos
         // También podemos validar a través de una expresión regular
@@ -280,15 +280,15 @@ private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     
     private void validarLugar()throws Exception{
         if (cbLugar.getSelectedIndex() == -1)
-            throw new CampoVacio("El lugar del acontecimiento es un dato obligatorio");
+            throw new CampoVacio("El campo esta vacio");
     }
     
     private void validarFecha()throws Exception{
         if (tfFecha.getText().isEmpty())
-            throw new CampoVacio("El fecha del acontecimiento es un dato obligatorio");
+            throw new CampoVacio("El campo esta vacio");
  
         // Comprobar que es mayor que la fecha actual
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
         localDate = LocalDate.parse(tfFecha.getText(), formatter);
         if (localDate.compareTo(LocalDate.now()) < 0)
                 throw new FechaNoValida();
@@ -296,9 +296,9 @@ private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     
     private void validarHoras()throws Exception{
           if (tfHoraInicio.getText().isEmpty())
-            throw new CampoVacio("La hora de inicio del acontecimiento es un dato obligatorio");
+            throw new CampoVacio("El campo esta vacio");
          if (tfHoraFin.getText().isEmpty())
-            throw new CampoVacio("La hora de finalización del acontecimiento es un dato obligatorio");
+            throw new CampoVacio("El campo esta vacio");
         
        // La hora de finalización tiene que ser mayor que la del inicio        
          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
@@ -310,7 +310,7 @@ private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     
     private void validarAforo()throws Exception{
         if (tfAforo.getText().isEmpty())
-            throw new CampoVacio("El aforo del acontecimeinto es un dato obligatorio");
+            throw new CampoVacio("El campo esta vacio");
         if (Integer.parseInt(tfAforo.getText()) <= 0)
             throw new NumberFormatException();
         

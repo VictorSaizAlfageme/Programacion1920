@@ -39,6 +39,7 @@ public class Controlador {
         te = new TablaEventos(bd.getCon());
         ev = new VentanaPrincipal();
         ev.setVisible(true);
+     vac.setVisible(false);
     }
 
     public static void mostrarAcontecimientos() {
