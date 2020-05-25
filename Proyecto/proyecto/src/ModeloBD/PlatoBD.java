@@ -155,6 +155,7 @@ public class PlatoBD {
        {
                 // Creamos el objeto
                 Plato p = new Plato();
+                p.setCodigoPlato(resultado.getInt("CodigoPlato"));
                 p.setNombre(resultado.getString("Nombre"));
                 p.setUnidades(resultado.getInt("Unidades"));
                 
@@ -218,6 +219,57 @@ public class PlatoBD {
        }
         
        return codigo;
+    }
+    
+    
+    public void restarUnidades(int CodigoPlato, int UnidadesPedidas) throws Exception
+    {
+        
+        plantilla = "update plato set Unidades = Unidades - ? where CodigoPlato = ?";
+        sentenciaPre = con.prepareStatement(plantilla);
+        sentenciaPre.setInt(1, UnidadesPedidas);
+        sentenciaPre.setInt(2, CodigoPlato);
+           
+        sentenciaPre.executeUpdate();
+       
+    }
+    
+    public ArrayList<Plato> obtenerPlatos(ArrayList<Plato> listaPlatos) throws Exception {
+        
+        plantilla = "SELECT * FROM plato order by Nombre";
+        sentenciaPre = con.prepareStatement(plantilla);
+            
+       ResultSet resultado = sentenciaPre.executeQuery();
+       while (resultado.next())
+        {
+           Plato plato = new Plato();
+           plato.setNombre(resultado.getString("Nombre"));
+           plato.setUnidades(resultado.getInt("Unidades"));
+           
+           listaPlatos.add(plato);
+           
+        }
+      
+       return listaPlatos;
+       
+    }
+    
+    public String contarPlatos() throws Exception
+    {
+        
+        int contador = 0;
+        plantilla = "SELECT CodigoPlato FROM plato";
+        sentenciaPre = con.prepareStatement(plantilla);
+           
+        ResultSet resultado = sentenciaPre.executeQuery(plantilla);
+        while(resultado.next()){
+            contador++;
+        }
+        
+        String nPlatos = String.valueOf(contador);
+        
+        return nPlatos; 
+       
     }
     
     

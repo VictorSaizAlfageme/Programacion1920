@@ -772,7 +772,7 @@ public class VentanaPlatos extends javax.swing.JFrame {
     }//GEN-LAST:event_tfNombreCNFocusGained
 
     private void BAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAtrasActionPerformed
-        Proyecto.cerrarVenatanaPlatos();
+        Proyecto.cerrarVentanaPlatos();
     }//GEN-LAST:event_BAtrasActionPerformed
 
     private void tfUnidadesActualesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUnidadesActualesFocusGained

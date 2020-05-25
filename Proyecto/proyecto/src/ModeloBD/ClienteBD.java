@@ -9,6 +9,7 @@ import Clases.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -140,6 +141,77 @@ public class ClienteBD{
        return DNI;
        
     }
+    
+    public void sumarPedido(String DNI) throws Exception
+    {
+        
+        plantilla = "update cliente set Pedidos = Pedidos + 1 where DNI = ?";
+        sentenciaPre = con.prepareStatement(plantilla);
+        sentenciaPre.setString(1, DNI);
+           
+        sentenciaPre.executeUpdate();
+       
+    }
+
+    public ArrayList<Cliente> obtenerClientes(ArrayList<Cliente> listaClientes) throws Exception {
+        
+        plantilla = "SELECT * FROM cliente order by Nombre";
+        sentenciaPre = con.prepareStatement(plantilla);
+            
+       ResultSet resultado = sentenciaPre.executeQuery();
+       while (resultado.next())
+        {
+           Cliente cliente = new Cliente();
+           cliente.setNombre(resultado.getString("Nombre"));
+           cliente.setPedidos(resultado.getInt("Pedidos"));
+           
+           listaClientes.add(cliente);
+           
+        }
+      
+       return listaClientes;
+       
+    }
+    
+    public String contarClientes() throws Exception
+    {
+        
+        int contador = 0;
+        plantilla = "SELECT DNI FROM cliente";
+        sentenciaPre = con.prepareStatement(plantilla);
+           
+        ResultSet resultado = sentenciaPre.executeQuery(plantilla);
+        while(resultado.next()){
+            contador++;
+        }
+        
+        String nclientes = String.valueOf(contador);
+        
+        return nclientes; 
+       
+    }
+    
+    public String mediaPedidos() throws Exception
+    {
+        
+        int contador = 0;
+        int pedidos = 0;
+        plantilla = "SELECT Pedidos FROM cliente";
+        sentenciaPre = con.prepareStatement(plantilla);
+           
+        ResultSet resultado = sentenciaPre.executeQuery(plantilla);
+        while(resultado.next()){
+            pedidos = pedidos + resultado.getInt("Pedidos");
+            contador++;
+        }
+        
+        
+        String mediaPedidos = String.valueOf(pedidos / contador);
+        
+        return mediaPedidos; 
+       
+    }
+    
       
          
 }

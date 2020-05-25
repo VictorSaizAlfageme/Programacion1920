@@ -148,6 +148,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         cbPlato.setFont(new java.awt.Font("Unispace", 1, 12)); // NOI18N
         cbPlato.setForeground(new java.awt.Color(0, 0, 0));
         cbPlato.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        cbPlato.setEnabled(false);
         cbPlato.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -180,6 +181,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         BComprobar.setFont(new java.awt.Font("Unispace", 0, 12)); // NOI18N
         BComprobar.setForeground(new java.awt.Color(255, 255, 255));
         BComprobar.setText("COMPROBAR");
+        BComprobar.setEnabled(false);
         BComprobar.setFocusPainted(false);
         BComprobar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,13 +234,13 @@ public class VentanaPedido extends javax.swing.JFrame {
                     .addComponent(JUnidadesActualesCU)
                     .addComponent(tfUnidadesActuales, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JUnidadesActualesCU1)
-                    .addComponent(tfUnidadesPedidas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(BComprobar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(4, 4, 4))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JUnidadesActualesCU1)
+                        .addComponent(tfUnidadesPedidas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JError, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -280,7 +282,7 @@ public class VentanaPedido extends javax.swing.JFrame {
         );
         JPanelNombreLayout.setVerticalGroup(
             JPanelNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 27, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -322,7 +324,7 @@ public class VentanaPedido extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JPanelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(JPanelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(tfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -369,7 +371,7 @@ public class VentanaPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAtrasActionPerformed
-        Proyecto.cerrarVenatanaPedidos();
+        Proyecto.cerrarVentanaPedidos();
     }//GEN-LAST:event_BAtrasActionPerformed
 
     private void BAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAñadirActionPerformed
@@ -380,8 +382,15 @@ public class VentanaPedido extends javax.swing.JFrame {
                 
                 if(JPanelNombre.getBackground()==Color.green){
                 JError.setText("");
-                Proyecto.guardarPedidos();
-                JError.setText("");
+               
+                int Unidades = Integer.parseInt(tfUnidadesPedidas.getText());
+                Object objetoSeleccionado = cbPlato.getSelectedItem();
+                String platoSeleccionado = objetoSeleccionado.toString();
+                Proyecto.guardarPedidos(Unidades, platoSeleccionado);
+                JError.setText("Plato añadido");
+                tfUnidadesPedidas.setText("");
+                tfUnidadesActuales.setText("");
+                BAñadir.setEnabled(false);
                 }
                 else{
                     JError.setText("Algún cuadro de texto esta mal");
@@ -403,6 +412,7 @@ public class VentanaPedido extends javax.swing.JFrame {
          try {
             String DNI = Proyecto.obtenerCodigoCliente(tfCliente.getText());
             Proyecto.insertarPedido(DNI);
+            Proyecto.pedidoRealizado();
             
         } catch (Exception e) {
             System.out.println(e.getClass());
@@ -436,6 +446,8 @@ public class VentanaPedido extends javax.swing.JFrame {
             
             if(DNIEncontrado || NombreEncontrado){
                JPanelNombre.setBackground(Color.green);
+               cbPlato.setEnabled(true);
+               BComprobar.setEnabled(true);
             }
             else{
                JPanelNombre.setBackground(Color.red);

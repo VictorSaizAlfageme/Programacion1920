@@ -47,9 +47,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JCBuscar = new javax.swing.JMenuItem();
         JCModificar = new javax.swing.JMenuItem();
         JEstadisticas = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        EClientes = new javax.swing.JMenuItem();
+        EPlatos = new javax.swing.JMenuItem();
+        EPedidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -170,14 +170,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JEstadisticas.setFont(new java.awt.Font("Unispace", 0, 14)); // NOI18N
         JEstadisticas.setMargin(new java.awt.Insets(5, 10, 2, 10));
 
-        jMenuItem5.setText("Clientes");
-        JEstadisticas.add(jMenuItem5);
+        EClientes.setText("Clientes");
+        EClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EClientesActionPerformed(evt);
+            }
+        });
+        JEstadisticas.add(EClientes);
 
-        jMenuItem8.setText(" Platos");
-        JEstadisticas.add(jMenuItem8);
+        EPlatos.setText("Platos");
+        EPlatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EPlatosActionPerformed(evt);
+            }
+        });
+        JEstadisticas.add(EPlatos);
 
-        jMenuItem6.setText("Pedidos");
-        JEstadisticas.add(jMenuItem6);
+        EPedidos.setText("Pedidos");
+        JEstadisticas.add(EPedidos);
 
         jMenuBar.add(JEstadisticas);
 
@@ -269,6 +279,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Proyecto.borrarPlato();
     }//GEN-LAST:event_JPBorrarActionPerformed
 
+    private void EClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EClientesActionPerformed
+        Proyecto.estadisticasCliente();
+    }//GEN-LAST:event_EClientesActionPerformed
+
+    private void EPlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EPlatosActionPerformed
+        Proyecto.estadisticasPlato();
+    }//GEN-LAST:event_EPlatosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -308,6 +326,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BPedido;
     private javax.swing.JButton BSalir;
+    private javax.swing.JMenuItem EClientes;
+    private javax.swing.JMenuItem EPedidos;
+    private javax.swing.JMenuItem EPlatos;
     private javax.swing.JMenuItem JCAñadir;
     private javax.swing.JMenuItem JCBorrar;
     private javax.swing.JMenuItem JCBuscar;
@@ -324,8 +345,5 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }

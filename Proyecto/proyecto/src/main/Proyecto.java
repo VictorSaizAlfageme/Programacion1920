@@ -22,15 +22,16 @@ public class Proyecto {
     private static VentanaClientes vcliente;
     private static VentanaPlatos vplato;
     private static VentanaPedido vpedido;
+    private static VentanaCompraRealizada vcompra;
+    private static VentanaEstadisticas vstats;
     
     
     private static Cliente c;
     private static Plato p;   
     
-    private static ArrayList<Plato> listaNombres = new ArrayList<>();
-    private static ArrayList<Plato> listaUnidades = new ArrayList<>();
+    private static ArrayList<String> listaNombres = new ArrayList<>();
+    private static ArrayList<Integer> listaUnidades = new ArrayList<>();
     private static ArrayList<Integer> listaCodigosPlatos = new ArrayList<>();
-    
     
     
     
@@ -54,6 +55,7 @@ public class Proyecto {
             vp = new VentanaPrincipal();
             vp.setLocationRelativeTo(null);
             vp.setVisible(true);
+            vcompra.setVisible(true);
          }
         catch(Exception e)
         {
@@ -61,27 +63,48 @@ public class Proyecto {
         }
     }
     
-    public static void cerrarVenatanaPlatos(){
+    public static void cerrarVentanaPlatos(){
         
         vplato.setVisible(false);
         vp.setLocationRelativeTo(null);
         vp.setVisible(true);
     }
     
-    public static void cerrarVenatanaClientes(){
+    public static void cerrarVentanaClientes(){
         
         vcliente.setVisible(false);
         vp.setLocationRelativeTo(null);
         vp.setVisible(true);
     }
     
-    public static void cerrarVenatanaPedidos(){
+    public static void cerrarVentanaPedidos(){
         
         vpedido.setVisible(false);
         vp.setLocationRelativeTo(null);
         vp.setVisible(true);
     }
     
+    public static void pedidoRealizado(){
+        
+        vcompra = new VentanaCompraRealizada();
+        vpedido.setVisible(false);
+        vcompra.setLocationRelativeTo(null);
+        vcompra.setVisible(true);
+    }
+    
+     public static void cerrarVentanaGracias(){
+        
+        vcompra.setVisible(false);
+        vp.setLocationRelativeTo(null);
+        vp.setVisible(true);
+    }
+    
+    public static void cerrarVentanaEstadisticas(){
+        
+        vstats.setVisible(false);
+        vp.setLocationRelativeTo(null);
+        vp.setVisible(true);
+    }
     
     public static void añadirCliente(){
         
@@ -188,6 +211,30 @@ public class Proyecto {
         vpedido.setLocationRelativeTo(null);
         vpedido.setVisible(true);
    }
+    
+    public static void estadisticasCliente(){
+        
+        vstats = new VentanaEstadisticas();
+        vp.setVisible(false);
+        
+        vstats.mostrarCliente();
+        
+        vstats.setLocationRelativeTo(null);
+        vstats.setVisible(true);
+    }
+    public static void estadisticasPlato(){
+        
+        vstats = new VentanaEstadisticas();
+        vp.setVisible(false);
+        
+        vstats.mostrarPlato();
+        
+        vstats.setLocationRelativeTo(null);
+        vstats.setVisible(true);
+    }
+    
+    
+    
     
     
      public static void altaCliente(String DNI, String Nombre,String Telefono) {
@@ -371,12 +418,11 @@ public class Proyecto {
          
      }
      
-     public static void guardarPedidos(){
+     public static void guardarPedidos(int Unidades, String Plato){
         
         try {
-            
-            listaNombres = Pbd.seleccionarNombrePlato();
-            listaUnidades = Pbd.seleccionarUnidadesPlato();
+            listaNombres.add(Plato);
+            listaUnidades.add(Unidades);
         
         } catch (Exception e) {
             System.out.println("Error al guardar informacion de cada plato" + e.getClass());
@@ -424,21 +470,77 @@ public class Proyecto {
         
         Pedidobd.insertarPedido(Cliente, codigoPedido);
         
-        
         for(int x = 0; x < listaNombres.size(); x++){
-            codigoPlato = Pbd.obtenerCodigoPlato(listaNombres.get(x).getNombre());
+            codigoPlato = Pbd.obtenerCodigoPlato(listaNombres.get(x));
             listaCodigosPlatos.add(x, codigoPlato);
+            PPbd.insertarPlatos(codigoPedido,listaCodigosPlatos.get(x), listaUnidades.get(x));
+            Pbd.restarUnidades(listaCodigosPlatos.get(x), listaUnidades.get(x));
         }
         
-        for(int i = 0; i < listaCodigosPlatos.size(); i++){
-            PPbd.insertarPlatos(codigoPedido,listaCodigosPlatos.get(i), listaUnidades.get(i));
-        }
-        
-        
-        
+        Cbd.sumarPedido(Cliente);
         
         }
+    
+    public static String rellenarCompra() throws Exception {
+        String datos = "";    
+        for(int x = 0; x < listaCodigosPlatos.size(); x++){
+        String pedidos = listaNombres.get(x) + "  /  Unidades =  " + listaUnidades.get(x);
+        datos = datos + "\n" + pedidos;
+        }
+       return datos; 
+    }
+
+    public static String rellenarTablaClientes() throws Exception {
+       String datos = "";
+        
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+       listaClientes = Cbd.obtenerClientes(listaClientes);
+       
+       for(int x = 0; x < listaClientes.size(); x++){
+        String nombre = listaClientes.get(x).getNombre() + "  /  Pedidos =  " + listaClientes.get(x).getPedidos();
+        datos = datos + "\n" + nombre;
+        }
+       return datos; 
+    }
+    
+     public static String mediaPedidos() throws Exception {
+       
+         String mediaPedidos = Cbd.mediaPedidos();
+       
+       return mediaPedidos; 
+    }
+    
      
-     
-     
+    public static String contarClientes() throws Exception {
+        
+       String nClientes = Cbd.contarClientes();
+       
+       return nClientes; 
+    }
+    
+    public static String rellenarTablaPlatos() throws Exception {
+       String datos = "";
+        
+       ArrayList<Plato> listaPlatos = new ArrayList<>();
+       listaPlatos = Pbd.obtenerPlatos(listaPlatos);
+       
+       for(int x = 0; x < listaPlatos.size(); x++){
+        String platos = listaPlatos.get(x).getNombre() + "  /  Unidades disponibles =  " + listaPlatos.get(x).getUnidades();
+        datos = datos + "\n" + platos;
+        }
+       return datos; 
+    }
+    
+     public static String contarPlatos() throws Exception {
+        
+       String nPlatos = Pbd.contarPlatos();
+       
+       return nPlatos; 
+    }
+   
+  
+    
+    
+    
+    
 }

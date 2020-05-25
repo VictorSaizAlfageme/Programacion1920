@@ -33,12 +33,13 @@ public class PedidoBD {
     {
         int CodigoPedido = 1;
         
-        plantilla = "select CodigoPedido from pedido order by CodigoPedido asc";
+        plantilla = "select CodigoPedido from pedido order by CodigoPedido desc";
         sentenciaPre = con.prepareStatement(plantilla);
   
         ResultSet resultado = sentenciaPre.executeQuery();
        if(resultado.next() && resultado.first()){
            CodigoPedido = resultado.getInt("CodigoPedido");
+           CodigoPedido++;
        }
         
         

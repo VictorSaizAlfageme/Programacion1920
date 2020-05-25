@@ -731,7 +731,7 @@ public class VentanaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_BAñadirActionPerformed
 
     private void BAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAtrasActionPerformed
-        Proyecto.cerrarVenatanaClientes();
+        Proyecto.cerrarVentanaClientes();
     }//GEN-LAST:event_BAtrasActionPerformed
 
     private void tfNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfNombreFocusLost

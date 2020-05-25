@@ -5,7 +5,6 @@
  */
 package ModeloBD;
 
-import Clases.Plato;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -25,12 +24,12 @@ public class PlatoPedidoBD {
         this.con = con;
     }
     
-    public void insertarPlatos(int CodigoPedido, Integer CodigoPlato, Plato Unidades) throws Exception {
+    public void insertarPlatos(int CodigoPedido, Integer CodigoPlato, int Unidades) throws Exception {
         plantilla = "insert into platopedido (CodigoPedido,CodigoPlato, Unidades) values (?,?,?)";
         sentenciaPre = con.prepareStatement(plantilla);
         sentenciaPre.setInt(1,CodigoPedido);
         sentenciaPre.setInt(2,CodigoPlato);
-        sentenciaPre.setInt(3,Unidades.getUnidades());
+        sentenciaPre.setInt(3,Unidades);
 
         sentenciaPre.executeUpdate();
     }
