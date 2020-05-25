@@ -42,7 +42,7 @@ public class VentanaCompraRealizada extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(550, 370));
+        setPreferredSize(new java.awt.Dimension(550, 380));
 
         jLabel1.setFont(new java.awt.Font("Unispace", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(181, 46, 131));
@@ -70,7 +70,7 @@ public class VentanaCompraRealizada extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Unispace", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("PEDIDO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -4,15 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/main/Proyecto.java</file>
-            <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/ModeloBD/GenericoBD.java</file>
-            <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/ModeloBD/PedidoBD.java</file>
             <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/Clases/Plato.java</file>
-            <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/Vista/VentanaPlatos.java</file>
             <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/Vista/VentanaClientes.java</file>
-            <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/ModeloBD/PlatoPedidoBD.java</file>
             <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/ModeloBD/ClienteBD.java</file>
+            <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/ModeloBD/PlatoPedidoBD.java</file>
+            <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/Vista/VentanaEstadisticas.java</file>
             <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/Vista/VentanaPedido.java</file>
             <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/Vista/VentanaPrincipal.java</file>
+            <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/ModeloBD/GenericoBD.java</file>
+            <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/Vista/VentanaCompraRealizada.java</file>
+            <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/ModeloBD/PedidoBD.java</file>
+            <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/Vista/VentanaPlatos.java</file>
             <file>file:/D:/Descargas/CLASE%2019-20/Programación/Proyecto/proyecto/src/ModeloBD/PlatoBD.java</file>
         </group>
     </open-files>

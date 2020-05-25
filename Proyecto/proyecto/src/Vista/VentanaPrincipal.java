@@ -49,7 +49,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JEstadisticas = new javax.swing.JMenu();
         EClientes = new javax.swing.JMenuItem();
         EPlatos = new javax.swing.JMenuItem();
-        EPedidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -185,9 +184,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         JEstadisticas.add(EPlatos);
-
-        EPedidos.setText("Pedidos");
-        JEstadisticas.add(EPedidos);
 
         jMenuBar.add(JEstadisticas);
 
@@ -327,7 +323,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BPedido;
     private javax.swing.JButton BSalir;
     private javax.swing.JMenuItem EClientes;
-    private javax.swing.JMenuItem EPedidos;
     private javax.swing.JMenuItem EPlatos;
     private javax.swing.JMenuItem JCAñadir;
     private javax.swing.JMenuItem JCBorrar;
