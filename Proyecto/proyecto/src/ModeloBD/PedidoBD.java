@@ -23,12 +23,15 @@ public class PedidoBD {
  
      private Connection con;
     
+     
+     // Realizar conexion
     public PedidoBD(Connection con)
     {
         this.con = con;
     }
     
-            
+     
+    // Obtener el ultimo codigo en plato siempre que exista uno y sumarle uno para tener el proximo codigo
     public int obetenerUlitmoCodigoPedido() throws Exception
     {
         int CodigoPedido = 1;
@@ -47,6 +50,9 @@ public class PedidoBD {
         
     }
     
+    
+    
+    // Insertar pedido en la base de datos
     public void insertarPedido(String Cliente, int CodigoPedido) throws Exception
     {
         

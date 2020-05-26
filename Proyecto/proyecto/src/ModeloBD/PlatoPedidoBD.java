@@ -19,11 +19,15 @@ public class PlatoPedidoBD {
  
      private Connection con;
     
+     
+     // Realizar conexion
      public PlatoPedidoBD(Connection con)
     {
         this.con = con;
     }
     
+     
+     // Insertar datos de la relacion
     public void insertarPlatos(int CodigoPedido, Integer CodigoPlato, int Unidades) throws Exception {
         plantilla = "insert into platopedido (CodigoPedido,CodigoPlato, Unidades) values (?,?,?)";
         sentenciaPre = con.prepareStatement(plantilla);

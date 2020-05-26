@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,11 +24,15 @@ public class ClienteBD{
  
     private Connection con;
     
+    
+    // Realizar conexion
     public ClienteBD (Connection con)
     {
         this.con = con;
     }
     
+    
+    // Insertar clientes a la base de datos
     public void alta(Cliente c) throws Exception
     {
             
@@ -43,6 +46,10 @@ public class ClienteBD{
             sentenciaPre.executeUpdate();
     }
     
+    
+    
+    
+    // Buscar un nombre de un cliente en la base de datos
     public Cliente validarNombre(String Nombre) throws Exception
     {
         
@@ -61,6 +68,11 @@ public class ClienteBD{
         return c;
     }
       
+    
+    
+    
+    
+    // Buscar un DNI de un cliente en la base de datos
     public Cliente validarDNI(String DNI) throws Exception
     {
         
@@ -79,8 +91,8 @@ public class ClienteBD{
         return c;
     }
       
-      
-     
+    
+    // Rellenar datos de un cliente en caso de que exista su DNI
     public  void rellenarCliente (ResultSet resultado) throws Exception
     {
       
@@ -91,6 +103,8 @@ public class ClienteBD{
       
     }
     
+    
+    // Borrar todos los datos de un cliente en la base de datos por su DNI
     public boolean borrarCliente(String DNI) throws Exception
     {
                
@@ -107,6 +121,9 @@ public class ClienteBD{
             return false;
     }
       
+    
+    
+    // Modificar datos de un cliente
     public boolean modificar(Cliente c) throws Exception
     {
         
@@ -125,6 +142,9 @@ public class ClienteBD{
         return false;
     }
     
+    
+    // Obtener DNI de un cliente por su nombre
+    
     public String obtenerDNI(String Nombre) throws Exception
     {
         String DNI = "";
@@ -142,6 +162,10 @@ public class ClienteBD{
        
     }
     
+    
+    
+    
+    // Contar los pedidos de un Cliente y añadirle uno más a la hora de realziar un pedido
     public void sumarPedido(String DNI) throws Exception
     {
         
@@ -153,6 +177,10 @@ public class ClienteBD{
        
     }
 
+    
+    
+    
+    // Buscar un cliente por su nombre en la base de datos
     public ArrayList<Cliente> obtenerClientes(ArrayList<Cliente> listaClientes) throws Exception {
         
         plantilla = "SELECT * FROM cliente order by Nombre";
@@ -173,6 +201,9 @@ public class ClienteBD{
        
     }
     
+    
+    
+    // Contar el número de clientes para las estadísticas
     public String contarClientes() throws Exception
     {
         
@@ -191,6 +222,9 @@ public class ClienteBD{
        
     }
     
+    
+    // Contar todos los pedidos que se han hecho y dividirlos por los clientes que hay.
+    // Para sacar la media de pedidos para las estadísticas.
     public String mediaPedidos() throws Exception
     {
         

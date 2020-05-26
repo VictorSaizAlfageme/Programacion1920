@@ -38,7 +38,8 @@ public class Proyecto {
     
     
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+    // Conexiones a la base de datos y lanzar la ventana
    
         try
         {
@@ -63,6 +64,7 @@ public class Proyecto {
         }
     }
     
+    // Cerrar Ventanas
     public static void cerrarVentanaPlatos(){
         
         vplato.setVisible(false);
@@ -106,6 +108,7 @@ public class Proyecto {
         vp.setVisible(true);
     }
     
+    // Abrir ventanas con sus diferentes JPanels
     public static void añadirCliente(){
         
         vcliente = new VentanaClientes();
@@ -151,11 +154,7 @@ public class Proyecto {
      
     
         
-    public static void terminar(){
-       bdCon.desconectar();
-       System.exit(0);
-       
-   }
+   
      
     public static void añadirPlato(){
         
@@ -233,23 +232,18 @@ public class Proyecto {
         vstats.setVisible(true);
     }
     
+      
+    // Cerrar programa
+     public static void terminar(){
+       bdCon.desconectar();
+       System.exit(0);
+       
+   }
+     
+     
     
-    
-    
-    
-     public static void altaCliente(String DNI, String Nombre,String Telefono) {
-           try {
-               
-           
-           c = new Cliente(DNI,Nombre,Telefono);
-           Cbd.alta(c);
-           
-           }
-           catch(Exception e){
-               System.out.println("Error al insertar un cliente" + e.getClass());
-           }
-       }
-         
+     
+     // Obtener datos de objetos
     public static String getNombreCliente(){
         return c.getNombre();
     }
@@ -270,6 +264,25 @@ public class Proyecto {
         return p.getUnidades();
     }
       
+    
+    
+    
+    
+    
+    // Acciones en la tabla de cliente
+    public static void altaCliente(String DNI, String Nombre,String Telefono) {
+           try {
+               
+           
+           c = new Cliente(DNI,Nombre,Telefono);
+           Cbd.alta(c);
+           
+           }
+           catch(Exception e){
+               System.out.println("Error al insertar un cliente" + e.getClass());
+           }
+       }
+    
     public static boolean buscarClientePorNombre(String Nombre) throws Exception
     {
         c = Cbd.validarNombre(Nombre);
@@ -297,7 +310,6 @@ public class Proyecto {
     }
 
     
-
     public static boolean modificarCliente(String DNI, String Nombre,String Telefono) {
         boolean modificado;   
         
@@ -315,6 +327,34 @@ public class Proyecto {
            
        }
     
+    public static String obtenerCodigoCliente(String Nombre){
+        String DNI="";
+        
+        try {
+            
+            boolean FormatoDNI = validarDni(Nombre);
+        
+            if(!FormatoDNI){
+            DNI = Cbd.obtenerDNI(Nombre);
+            }else{
+                DNI = Nombre;
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.getClass());
+        }
+            
+        return DNI;
+            
+        
+    }
+    
+    
+    
+    
+    
+    
+    // Acciones con la tabla de platos
     public static void añadirPlato(String Nombre, int Unidades) {
            try {
                
@@ -396,7 +436,13 @@ public class Proyecto {
            return false;
            
        }
+    
      
+     
+     
+     
+     
+     // Llenar ventana de pedido
      public static void llenarComboBox(JComboBox cb) throws Exception
      {
         ArrayList<Plato> listaPlatos = Pbd.seleccionarPlato();
@@ -418,39 +464,9 @@ public class Proyecto {
          
      }
      
-     public static void guardarPedidos(int Unidades, String Plato){
-        
-        try {
-            listaNombres.add(Plato);
-            listaUnidades.add(Unidades);
-        
-        } catch (Exception e) {
-            System.out.println("Error al guardar informacion de cada plato" + e.getClass());
-        }
-    }
      
-    public static String obtenerCodigoCliente(String Nombre){
-        String DNI="";
-        
-        try {
-            
-            boolean FormatoDNI = validarDni(Nombre);
-        
-            if(!FormatoDNI){
-            DNI = Cbd.obtenerDNI(Nombre);
-            }else{
-                DNI = Nombre;
-            }
-            
-        } catch (Exception e) {
-            System.out.println(e.getClass());
-        }
-            
-        return DNI;
-            
-        
-    }
-    
+     
+     // Validar DNI para en la ventana pedidos saber si es un nombre o DNI
     private static boolean validarDni(String DNI) throws Exception{
         String dnipat = "^\\d{8}[A-HJ-NP-TV-Z]$";
         if (Pattern.matches(dnipat, DNI)== false ){
@@ -463,6 +479,24 @@ public class Proyecto {
     
     
     
+     
+     // Añadir platos y unidades al pedido
+     public static void guardarPedidos(int Unidades, String Plato){
+        
+        try {
+            listaNombres.add(Plato);
+            listaUnidades.add(Unidades);
+        
+        } catch (Exception e) {
+            System.out.println("Error al guardar informacion de cada plato" + e.getClass());
+        }
+    }
+     
+    
+    
+    
+    
+    // Finalizar Pedido
     public static void insertarPedido(String Cliente) throws Exception
        {
         int codigoPlato = 0;
@@ -481,6 +515,8 @@ public class Proyecto {
         
         }
     
+    
+    // Llenar TextArea de la lista de pedidos
     public static String rellenarCompra() throws Exception {
         String datos = "";    
         for(int x = 0; x < listaCodigosPlatos.size(); x++){
@@ -490,6 +526,10 @@ public class Proyecto {
        return datos; 
     }
 
+    
+    
+    
+    // Rellenar estadisticas
     public static String rellenarTablaClientes() throws Exception {
        String datos = "";
         

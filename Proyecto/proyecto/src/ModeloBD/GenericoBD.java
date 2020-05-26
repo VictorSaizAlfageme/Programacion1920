@@ -7,9 +7,12 @@ public class GenericoBD {
     
     private Connection con;
 
+    
     public GenericoBD() {
     }
     
+    
+    // Realizar conexion
    public void conectar(){
        try{
                // Identificamos el driver
@@ -31,6 +34,8 @@ public class GenericoBD {
        }
    }
    
+   
+   // Cerrar conexion con la base de datos
    public void desconectar(){
        try
        {

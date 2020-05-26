@@ -23,11 +23,15 @@ public class PlatoBD {
  
     private Connection con;
     
+    
+    // Realizar conexion
     public PlatoBD (Connection con)
     {
         this.con = con;
     }
     
+    
+    // Añadir un plato a la base de datos
     public void añadirplato(Plato p) throws Exception
     {
             
@@ -39,6 +43,9 @@ public class PlatoBD {
             sentenciaPre.executeUpdate();
     }
     
+    
+    
+    // Buscar si un nombre de un plato existe en la base de datos
     public Plato validarNombre(String Nombre) throws Exception
     {
         
@@ -57,6 +64,9 @@ public class PlatoBD {
         return p;
     }
     
+    
+    
+    // En caso de que exista un plato, obtener información sobre el
     public void rellenarPlato (ResultSet resultado) throws Exception
     {
       
@@ -66,6 +76,8 @@ public class PlatoBD {
       
     }
     
+    
+    // Buscar las unidades de un plato según su nombre
     public Plato mostrarUnidades(String Nombre)throws Exception
     {
         
@@ -84,6 +96,9 @@ public class PlatoBD {
         return p;
     }
     
+    
+    
+    // Obtener las unidades de un plato en caso de que exista
     public void rellenarUnidadesPlato(ResultSet resultado) throws Exception
     {
       
@@ -92,6 +107,9 @@ public class PlatoBD {
       
     }
     
+    
+    
+    // Modificar las unidades de un plato
     public boolean actualizarUnidades(String Nombre, int UnidadesActuales)throws Exception
     {
         
@@ -109,6 +127,10 @@ public class PlatoBD {
         return false;
     }
     
+    
+    
+    
+    // Eliminar un plato de la base de datos
     public boolean borrarPlato(String Nombre) throws Exception
     {
                
@@ -125,6 +147,9 @@ public class PlatoBD {
             return false;
     }
     
+    
+    
+    // Modificar el nombre de un plato
     public boolean modificar(String NombreV, String NombreN) throws Exception
     {
         
@@ -142,6 +167,9 @@ public class PlatoBD {
         return false;
     }
     
+    
+    
+    // Obtener toda de la información de todos los platos y meterlos en un ArrayList
     public ArrayList<Plato>  seleccionarPlato() throws Exception
     {
         ArrayList<Plato> listaPlatos = new ArrayList();
@@ -164,6 +192,9 @@ public class PlatoBD {
        return listaPlatos;
     }
     
+    
+    
+    // Obtener solamente el nombre de de todos los platos y meterlos en un ArrayList
     public ArrayList<Plato>  seleccionarNombrePlato() throws Exception
     {
         ArrayList<Plato> listaNombresPlatos = new ArrayList();
@@ -184,6 +215,8 @@ public class PlatoBD {
        return listaNombresPlatos;
     }
     
+    
+    // Obtener solamente el nombre de de todos los platos y meterlos en un ArrayList
     public ArrayList<Plato>  seleccionarUnidadesPlato() throws Exception
     {
         ArrayList<Plato> listaNombresPlatos = new ArrayList();
@@ -204,6 +237,9 @@ public class PlatoBD {
        return listaNombresPlatos;
     }
     
+    
+    
+    // Obtener solamente el codigo de de todos los platos y meterlos en un ArrayList
     public int obtenerCodigoPlato(String Nombre) throws Exception
     {
         int codigo = 1;
@@ -222,6 +258,8 @@ public class PlatoBD {
     }
     
     
+    
+    // Restar unidades pedidas en el pedido a las unidades ya existentes
     public void restarUnidades(int CodigoPlato, int UnidadesPedidas) throws Exception
     {
         
@@ -234,6 +272,9 @@ public class PlatoBD {
        
     }
     
+    
+    
+    // Obtener datos de todos los platos y meterlos en un ArrayList
     public ArrayList<Plato> obtenerPlatos(ArrayList<Plato> listaPlatos) throws Exception {
         
         plantilla = "SELECT * FROM plato order by Nombre";
@@ -254,6 +295,9 @@ public class PlatoBD {
        
     }
     
+    
+    
+    // Contar el numero de platos que hay
     public String contarPlatos() throws Exception
     {
         
